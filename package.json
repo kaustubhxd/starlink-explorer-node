@@ -4,6 +4,12 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "builds": [
+    { "src": "index.js", "use": "@now/node" }
+  ],
+  "routes": [
+      { "src": "/(.*)", "dest": "index.js" }
+  ],
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
