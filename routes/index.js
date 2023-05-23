@@ -2,6 +2,10 @@ import express from 'express'
 import expressAsyncHandler from 'express-async-handler'
 
 import starlinkRoute from './v1/starlinkRoute.js'
+import authRoute from './v1/authRoute.js'
+import { checkAuthentication } from '../middlewares/authValidate.js'
+
+
 const router = express.Router()
 
 // Check if server is online
@@ -20,6 +24,7 @@ router.get(
 )
 
 // Routes
-router.use('/v1/starlink', starlinkRoute)
+router.use('/v1/starlink', checkAuthentication,starlinkRoute)
+router.use('/v1/auth', authRoute)
 
 export default router
